@@ -1,5 +1,5 @@
 <h1 align="center">🖥️Noro Market🖥️</h1>
-<h2> Loja virtual que usa API de cep para calcúlar o frete</h2> 
+<h2> Loja virtual que usa API de cep para calcular o frete</h2> 
 
 
 <br>
