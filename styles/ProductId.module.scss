@@ -1,0 +1,80 @@
+@import "./variables.scss";
+
+.container {
+    min-height: 100vh;
+    color: #fff;
+    padding-bottom: 120px;
+
+
+    .titleContainer h1 {
+        font-weight: bold;
+        border-bottom: 7px solid $color-primary;
+        text-shadow: 5px 5px 2px $secondary-color;
+    }
+
+    .productContainer {
+        background-color: #212121;
+        color: $white-color;
+        border-radius: 50px 60px 40px 10px;
+        border: 3px solid $white-color;
+        display: flex;
+        align-items: center;
+        padding: 90px 20px;
+        box-shadow: 0px 0px 40px $white-color;
+
+        .descriptionContainer {
+            border: 2px solid $white-color;
+            padding: 40px 0;
+
+            p {
+                font-weight: bold;
+                border-bottom: 2px solid $white-color;
+                padding-left: 10px;
+                display: flex;
+            }
+
+            h6 {
+                text-transform: lowercase;
+                font-weight: 500;
+                padding-left: 10px;
+            }
+        }
+
+        .calcFreightContainer {
+            width: max-content;
+            
+            input {
+                padding: 8px 0px;
+                border-radius: 10px 5px 9px 4px;
+            }
+
+            button {
+                margin-left: 20px;
+                padding: 10px 15px;
+                font-weight: bold;
+                border-radius: 10px 5px 9px 4px;
+                transition: all .6s;
+                color: $bg-color;
+                background-color: $color-primary;
+
+                &:hover {
+                    filter: brightness(1.3);
+                    background-color: $secondary-color;
+                    color: $color-primary;
+                }
+            }
+        }
+
+        .buyContainer {
+            display: flex;
+
+            input {
+                width: 3.3em;
+                height: 2em;
+                font-size: 1.2em;
+                color: #fff;
+                background-color: #212121;
+            }
+        }
+    }
+}
