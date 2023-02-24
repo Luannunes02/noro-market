@@ -12,16 +12,16 @@
 
 # SITE EM DESENVOLVIMENTO
 
-Loja virtual que desenvolvi, é possível acrescentar produtos no carrinho, calcúlar o frete para região, comprar os produtos.
+Loja virtual que desenvolvi, é possível acrescentar produtos no carrinho, calcúlar o frete para região, comprar os produtos.<br><br>
 
-O site ainda está em desenvolvimento, planejo inserir no site:
-Uma aba de favoritos
-Consultar as compras realizadas(o estado já está sendo armazenado no Redux para implementar essa feature)
-Fazer uma outra API para usar ao invés da de ração
-Repaginar o Design da página que foi feito previamente
-Fazer a barra de pesquisar filtrar as pesquisar adequadamente
-Usar um banco de dados ou local storage para armazenar as compras feitas
-Dentre outras melhorias.
+O site ainda está em desenvolvimento, planejo inserir no site: <br> <br>
+Uma aba de favoritos <br>
+Consultar as compras realizadas(o estado já está sendo armazenado no Redux para implementar essa feature) <br>
+Fazer uma outra API para usar ao invés da de ração <br>
+Repaginar o Design da página que foi feito previamente <br>
+Fazer a barra de pesquisar filtrar as pesquisar adequadamente <br>
+Usar um banco de dados ou local storage para armazenar as compras feitas <br>
+Dentre outras melhorias. <br>
 
 <br><br>
 <strong>Acesse o site e aproveite: https://noro-market.vercel.app/cart </strong>
