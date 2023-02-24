@@ -24,7 +24,7 @@ Usar um banco de dados ou local storage para armazenar as compras feitas <br>
 Dentre outras melhorias. <br>
 
 <br><br>
-<strong>Acesse o site e aproveite: https://noro-market.vercel.app/cart </strong>
+<strong>Acesse o site e aproveite: https://noro-market.vercel.app </strong>
 <br>
 <br>
 <h2><strong>🚀 Tecnologias usadas:</strong></h2>   
