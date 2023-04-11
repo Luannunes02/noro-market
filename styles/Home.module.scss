@@ -1,5 +1,44 @@
+@import "/styles/variables.scss";
+
+.searchContainer {
+  display: flex;
+  justify-content: center;
+
+  div {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem 0;
+    flex-direction: column;
+    width: 15rem;
+    padding: 2rem 1rem;
+    border: 2px solid;
+
+    label {
+      font-weight: 600;
+    }
+
+    input {
+      margin-top: 0.5rem;
+    }
+
+    button {
+      margin-top: 1rem;
+      padding: 0.6rem 1.3rem;
+      font-weight: bold;
+      background-color: $color-primary;
+      transition: all .5s linear;
+
+      &:hover {
+        filter: brightness(0.7);
+      }
+    }
+  }
+}
+
 .container {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: space-around;
 }

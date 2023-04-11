@@ -1,8 +1,144 @@
+@import "./variables.scss";
+
 .cartContainer {
     color: #fff;
+    min-height: 83vh;
 }
 
 .title {
     text-align: center;
     font-weight: bold;
+}
+
+.dataForBuyContainer {
+    border-top: 5px solid $color-primary;
+    border-radius: 5px;
+
+    h1 {
+        color: $color-primary;
+        text-transform: uppercase;
+        font-weight: bold;
+    }
+
+    .inputbox {
+            position: relative;
+            width: 196px;
+            background-color: $bg-color;
+        }
+    
+        .inputbox input {
+            position: relative;
+            width: 100%;
+            padding: 20px 10px 10px;
+            background: transparent;
+            outline: none;
+            box-shadow: none;
+            border: none;
+            color: #23242a;
+            font-size: 1em;
+            letter-spacing: 0.05em;
+            transition: 0.5s;
+            z-index: 10;            
+        }
+    
+        .inputbox span {
+            position: absolute;
+            left: 0;
+            padding: 20px 10px 10px;
+            font-size: 1em;
+            color: #8f8f8f;
+            letter-spacing: 00.05em;
+            transition: 0.5s;
+            pointer-events: none;
+        }
+    
+        .inputbox input:valid~span,
+        .inputbox input:focus~span {
+            color: $color-primary;
+            transform: translateX(-10px) translateY(-34px);
+            font-size: 0, 75em;
+        }
+    
+        .inputbox i {
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            height: 2px;
+            background: $color-primary;
+            border-radius: 4px;
+            transition: 0.5s;
+            pointer-events: none;
+            z-index: 9;
+        }
+    
+        .inputbox input:valid~i,
+        .inputbox input:focus~i {
+            height: 44px;
+        }
+
+}
+
+.dataForBuyContainer {
+    .inputboxChecked {
+        position: relative;
+        width: 196px;
+        background-color: $bg-color;
+    }
+
+    .inputboxChecked input {
+        position: relative;
+        width: 100%;
+        padding: 20px 10px 10px;
+        background: transparent;
+        outline: none;
+        box-shadow: none;
+        border: none;
+        color: #23242a;
+        font-size: 1em;
+        letter-spacing: 0.05em;
+        transition: 0.5s;
+        z-index: 10;
+    }
+
+    .inputboxChecked span {
+        position: absolute;
+        left: 0;
+        padding: 20px 10px 10px;
+        font-size: 1em;
+        color: #8f8f8f;
+        letter-spacing: 00.05em;
+        transition: 0.5s;
+        pointer-events: none;
+        color: $color-primary;
+        transform: translateX(-10px) translateY(-34px);
+        font-size: 0, 75em;
+    }
+
+    .inputboxChecked input:valid~span,
+    .inputboxChecked input:focus~span {
+        color: $color-primary;
+        transform: translateX(-10px) translateY(-34px);
+        font-size: 0, 75em;
+    }
+
+    .inputboxChecked i {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        height: 2px;
+        background: $color-primary;
+        border-radius: 4px;
+        transition: 0.5s;
+        pointer-events: none;
+        z-index: 9;
+        height: 44px;
+    }
+
+    .inputboxChecked input:valid~i,
+    .inputboxChecked input:focus~i {
+        height: 44px;
+    }
+
 }

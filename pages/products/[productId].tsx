@@ -62,6 +62,12 @@ export default function Product() {
         setCepInput(e);
     }
 
+    function handleKeyDown(event: React.KeyboardEvent<HTMLInputElement>) {
+      if (event.key === "-") {
+        event.preventDefault();
+      }
+    }
+
     useEffect(() => {
         if (cep === undefined) {
             return
@@ -70,9 +76,9 @@ export default function Product() {
         function makeMessage() {
             switch (cep.uf) {
                 case "DF":
-                    setMessageCep(`O Frete para região de ${cep.localidade} - ${cep.uf} é grátis`);
-                    setCepValue(0);
-                    dispatch(updateMessageCep(`O Frete para região de ${cep.localidade} - ${cep.uf} é grátis`))
+                    setMessageCep(`O Frete para região de ${cep.localidade} - ${cep.uf} é de 5,10`);
+                    setCepValue(5.10);
+                    dispatch(updateMessageCep(`O Frete para região de ${cep.localidade} - ${cep.uf} é 5,10`))
                     break;
                 case "SP":
                     setMessageCep(`O Frete para região do ${cep.localidade} - ${cep.uf} é de 15,98`);
@@ -128,29 +134,48 @@ export default function Product() {
 
 
     async function handleSearchCep() {
-        if (cepInput.length < 8) {
-            toast.warn('CEP tem que ter 8 dígitos!', {
-                position: "top-right",
-                autoClose: 1000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "dark",
-            });
-            return
+      if (cepInput.length < 8) {
+        toast.warn("CEP tem que ter 8 dígitos!", {
+          position: "top-right",
+          autoClose: 1000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+        });
+        return;
+      }
+
+      try {
+        const response = await axios.get(
+          `https://viacep.com.br/ws/${cepInput}/json/`
+        );
+        if (response.data.erro) {
+          // CEP inválido
+          toast.warn("CEP inválido!", {
+            position: "top-right",
+            autoClose: 1000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "dark",
+          });
+          return;
         }
+        dispatch(updateCep(response.data));
+        setCep(response.data);
+      } catch (error) {
+        console.error(error);
+        // Tratar erro da chamada da API
+      }
 
-        await axios
-            .get(`https://viacep.com.br/ws/${cepInput}/json/`)
-            .then(res => {
-                dispatch(updateCep(res.data))
-                setCep(res.data)
-            })
-
-        setCepInput('');
+      setCepInput("");
     }
+
 
     function handleBuyBtn() {
 
@@ -166,6 +191,23 @@ export default function Product() {
                 theme: "dark",
             });
             return
+        }
+
+        if(buyQuant == 0) {
+            toast.warn(
+              "Você não pode adicionar 0 unidade ao carrinho!",
+              {
+                position: "top-right",
+                autoClose: 1000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "dark",
+              }
+            );
+            return;
         }
 
         const hasTheSameProductIntheCart = cartSelector.some((product: any) => product.productId === productId);
@@ -199,7 +241,7 @@ export default function Product() {
     }
 
     function verifyBuyQuant(value: any) {
-        if (value < 1) {
+        if (value < 0) {
             toast.warn('Quantidade minima a se comprar de 1 unidade!', {
                 position: "top-right",
                 autoClose: 1000,
@@ -216,64 +258,69 @@ export default function Product() {
     }
 
     return (
-        <section className={`${styles.container} container`}>
-            {!loadProduct
-                ?
-                (<p>Carregando...</p>)
-                :
-                (
-                    <div>
-                        <div className={`d-flex justify-content-center ${styles.titleContainer}`}>
-                            <h1 className='mt-5 display-3'>{product.name} 10KG</h1>
-                        </div>
-                        <div className={`${styles.productContainer} row mt-5`}>
-                            <div className={`col col-lg-4`}>
-                                <Image
-                                    src={product.capa}
-                                    alt={product.name}
-                                    width={400}
-                                    height={600}
-                                />
-                            </div>
-                            <div className={`col col-lg-8`}>
-                                <div className={`${styles.descriptionContainer}`}>
-                                    <p className='display-6'>
-                                        Descrição:
-                                    </p>
-                                    <h6 className='fs-3'>
-                                        {product.descricao}
-                                    </h6>
-                                </div>
+      <section className={`${styles.container} container`}>
+        {!loadProduct ? (
+          <p>Carregando...</p>
+        ) : (
+          <div>
+            <div
+              className={`d-flex justify-content-center ${styles.titleContainer}`}>
+              <h1 className="mt-5 display-3">{product.name} 10KG</h1>
+            </div>
+            <div className={`${styles.productContainer} row mt-5`}>
+              <div className={`col col-lg-4`}>
+                <Image
+                  src={product.capa}
+                  alt={product.name}
+                  width={400}
+                  height={600}
+                />
+              </div>
+              <div className={`col col-lg-8`}>
+                <div className={`${styles.descriptionContainer}`}>
+                  <p className="display-6">Descrição:</p>
+                  <h6 className="fs-3">{product.descricao}</h6>
+                </div>
 
-                                <div className={`${styles.calcFreightContainer} mt-4`}>
-                                    {cepSelector === undefined ?
-                                        <div className={`mt-4`}>
-                                            <input type='number' value={cepInput} onChange={(e: any) => verifyInputCepMaxLength(e.target.value)} id='cepInput' />
-                                            <button className={` `} onClick={handleSearchCep}>Calcúlar frete</button>
-                                        </div>
-                                        :
-                                        <div></div>
-                                    }
-
-                                    {cepSelector !== undefined ? <p className='mt-4'>{messageCep}</p>
-                                        :
-                                        <span></span>
-                                    }
-                                </div>
-                                <div className={`${styles.buyContainer} mt-4`}>
-                                    <input type='number'
-                                        value={buyQuant}
-                                        onChange={(e: any) => (
-                                            verifyBuyQuant(e.target.value)
-                                        )}
-                                        pattern="[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+$"
-                                    />
-                                    <button onClick={handleBuyBtn}>Adicionar no carrinho</button>
-                                </div>
-                            </div>
-                        </div>
+                <div className={`${styles.calcFreightContainer} mt-4`}>
+                  {cepSelector === undefined ? (
+                    <div className={`mt-4`}>
+                      <input
+                        type="number"
+                        value={cepInput}
+                        onChange={(e: any) =>
+                          verifyInputCepMaxLength(e.target.value)
+                        }
+                        onKeyDown={handleKeyDown} // adiciona o evento onKeyDown
+                        id="cepInput"
+                      />
+                      <button className={` `} onClick={handleSearchCep}>
+                        Calcúlar frete
+                      </button>
                     </div>
-                )}
-        </section>
-    )
+                  ) : (
+                    <div></div>
+                  )}
+                  {cepSelector !== undefined ? (
+                    <p className="mt-4">{messageCep}</p>
+                  ) : (
+                    <span></span>
+                  )}
+                </div>
+
+                <div className={`${styles.buyContainer} mt-4`}>
+                  <input
+                    type="number"
+                    value={buyQuant}
+                    onChange={(e: any) => verifyBuyQuant(e.target.value)}
+                    pattern="[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+$"
+                  />
+                  <button onClick={handleBuyBtn}>Adicionar no carrinho</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+      </section>
+    );
 }
