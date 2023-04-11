@@ -1,6 +1,6 @@
-import styles from "../styles/Navbar.module.scss";
 import Link from "next/link";
 import React, { useState } from "react";
+import styles from "../styles/Navbar.module.scss";
 
 import { useRouter } from "next/router";
 
