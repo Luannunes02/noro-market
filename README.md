@@ -1,10 +1,20 @@
 <h1 align="center">🖥️Noro Market🖥️</h1>
 <h2> Loja virtual que usa API de cep para calcular o frete</h2> 
 
+![20230601_204259](https://github.com/Luannunes02/noro-market/assets/105875989/84648cf7-0cb8-4cfe-a301-198a61d3ca2c)
+
 
 <br>
 
-![1](https://user-images.githubusercontent.com/105875989/221195856-8c917cbd-ed6e-4f41-a922-3f4cb30fb095.png)
+![image](https://github.com/Luannunes02/noro-market/assets/105875989/82be5e71-1715-4dd6-88e5-24343806d5d9)
+
+![image](https://github.com/Luannunes02/noro-market/assets/105875989/321e11e6-a058-4f4b-9190-edde85ca6c86)
+
+![image](https://github.com/Luannunes02/noro-market/assets/105875989/fdbc970d-01ac-4152-ad19-3f95eb8831ae)
+
+![image](https://github.com/Luannunes02/noro-market/assets/105875989/4e97fd9a-93f3-4c87-bef2-f8acedcff513)
+
+![image](https://github.com/Luannunes02/noro-market/assets/105875989/7e45c1fd-1cc4-4d5e-88b8-e7fd9ca28868)
 
 <br>
 
